@@ -1,0 +1,32 @@
+<%= form_for(@company, :html => {class: "form-group", role: "form"}, url: create_company_path) do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :strasse %>
+    <%= f.text_field :strasse, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :adresszusatz %>
+    <%= f.text_field :adresszusatz, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :stadt %>
+    <%= f.text_field :stadt, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :plz %>
+    <%= f.text_field :plz, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :ceo %>
+    <%= f.text_field :ceo, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :beauftragter %>
+    <%= f.text_field :beauftragter, autofocus: true, class: 'form-control' %>
+  </div>
+  <%= f.submit "Daten speichern", class: 'btn btn-primary'%>
+<% end %>
