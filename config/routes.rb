@@ -8,4 +8,10 @@ Rails.application.routes.draw do
     root 'dashboard#index'
     get 'bearbeiten' => 'dashboard#company', as: :company
     post 'unternehmen_erstellen' => 'dashboard#create_company', as: :create_company
+    
+    get 'datenverarbeitung' => 'dashboard#datenverarbeitung'
+  
+    resources :dashboard, only: [:index, :datenverarbeitung] do
+    resource :download, only: [:datenverarbeitung]
+  end
 end

@@ -16,6 +16,12 @@ gem 'will_paginate-bootstrap'
 
 gem 'airtable'
 
+gem 'wkhtmltopdf-binary', '~> 0.12.3'
+
+gem 'pdfkit', '~> 0.8.2'
+
+gem 'render_anywhere'
+
 gem "recaptcha", require: "recaptcha/rails"
 
 # Use Puma as the app server
