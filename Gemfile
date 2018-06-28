@@ -22,6 +22,13 @@ gem 'pdfkit', '~> 0.8.2'
 
 gem 'render_anywhere'
 
+gem 'ckeditor', github: 'galetahub/ckeditor'
+
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'liquid'
+
 gem "recaptcha", require: "recaptcha/rails"
 
 # Use Puma as the app server

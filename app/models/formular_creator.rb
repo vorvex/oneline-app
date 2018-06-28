@@ -1,0 +1,2 @@
+class FormularCreator < ApplicationRecord
+end

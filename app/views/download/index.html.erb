@@ -1,0 +1,4 @@
+
+<% @formulars.each do |formular| %>
+  <%= link_to formular.name, formular_path(formular.name + '.pdf') %>
+<% end %>
