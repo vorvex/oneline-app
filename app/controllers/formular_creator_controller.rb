@@ -1,4 +1,5 @@
 class FormularCreatorController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @formulars = FormularCreator.all
   end
@@ -10,7 +11,7 @@ class FormularCreatorController < ApplicationController
   def create
     @formular = FormularCreator.new(formular_params)
     @formular.save
-    redirect_to root_path
+    redirect_to admin_path
   end
 
   def edit
@@ -20,18 +21,18 @@ class FormularCreatorController < ApplicationController
   def update
     @formular = FormularCreator.find(params[:id])
     @formular.update(formular_params)
-    redirect_to root_path
+    redirect_to admin_path
   end
 
   def destroy
     @formular = FormularCreator.find(params[:id])
     @formular.destroy
-    redirect_to root_path
+    redirect_to admin_path
   end
   
   private
   
   def formular_params
-    params.require(:formular).permit(:name, :content)
+    params.require(:formular_creator).permit(:name, :content)
   end
 end

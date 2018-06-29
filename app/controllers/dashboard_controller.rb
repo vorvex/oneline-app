@@ -1,18 +1,7 @@
 class DashboardController < ApplicationController
+  before_action :authenticate_user!, :welcome, :authenticate_company!
   def index
-    if user_signed_in?
-      if current_user.company.nil?
-        redirect_to company_path
-      else
-        @company = Company.find_by_user_id(current_user.id)
-      end
-    else
-      redirect_to login_path
-    end
+    @company = Company.find_by_user_id(current_user.id)
   end
   
-  def company
-    @company = Company.new()
-  end
-
 end

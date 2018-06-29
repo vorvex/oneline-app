@@ -1,4 +1,1 @@
-<% @formulars.each do |formular| %>
-  <%= link_to formular.name, formular_edit_path(formular.id) %>
-<% end %>
- <%= link_to 'Neues Formular anlegen', formular_new_path %>
+<%= render 'shared/formular_table' %>

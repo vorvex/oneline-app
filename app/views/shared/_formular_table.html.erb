@@ -1,0 +1,21 @@
+<h1>
+  Formulare
+</h1>
+<table class="table table-hover">
+    <thead>
+      <td>ID</td>
+      <td>Name</td>
+      <td></td>
+    </thead>
+    <tbody>
+      <% @formulars.each do |formular| %>
+      <tr>
+          <td class="col-md-1"><%= formular.id %></td>
+          <td class="col-md-6"><%= formular.name %></td>
+          <td class="col-md-5" style="text-align: right;"><%= link_to 'Bearbeiten', formular_edit_path(formular.id) %> <%= link_to 'Vorschau', formular_path(formular.name + '.pdf') %></td>
+      </tr>
+      <% end %>
+    </tbody>  
+  </table>
+<%= link_to 'Neues Formular anlegen', formular_new_path %>
+ 

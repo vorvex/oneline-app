@@ -1,4 +1,33 @@
 class ApplicationController < ActionController::Base
-include Liquid
+  before_action :set_locale
+  helper_method :authenticate_admin!, :authenticate_company!, :current_admin?, :welcome
+  
+  def set_locale
+    I18n.locale = 'de' || I18n.default_locale
+  end
+  
+  def authenticate_admin!
+    @user = User.find(current_user.id)
+    if @user.role_name != 'admin'
+      redirect_to root_path
+    end
+  end
+  
+  def authenticate_company!
+    if current_user.company.nil?
+      flash[:notice] = "Bitte tragen Sie zuerst Ihre Daten eintragen"
+      redirect_to company_path
+    end
+  end
+  
+  def current_admin?
+    current_user.admin?
+  end
+  
+  def welcome
+    if current_user.sign_in_count == 1
+      redirect_to new_password_path
+    end  
+  end
   
 end

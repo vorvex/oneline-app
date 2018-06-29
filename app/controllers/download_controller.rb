@@ -1,5 +1,5 @@
 class DownloadController < ApplicationController
-  
+  before_action :authenticate_user!, :authenticate_company!
   def index
     @formulars = FormularCreator.all
   end

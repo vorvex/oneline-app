@@ -1,12 +1,24 @@
 <h1>Neues Formular</h1>
 
-<%= form_for(@formular, :html => {class: "form-group", role: "form"}, url: formular_new_path) do |f| %>
+<%= form_for(@formular, :html => {class: "form-group", role: "form"}, url: formular_create_path) do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, autofocus: true, class: 'form-control' %>
   </div>
   <div class="form-group" >
-    <%= f.cktext_area :content, class: 'someclass', ckeditor: { language: 'de'} %>
+    <%= f.cktext_area :content, class: 'ckeditor', ckeditor: { language: 'de'} %>
+  </div>
+  <div class="well">
+    Zur Verfügung stehende Variablen:<br>
+    company.name = Name des Unternehmens<br>
+    company.strasse = Straße des Firmensitzes<br>
+    company.adresszusatz = Adresszusatz<br>
+    company.stadt = Stadt des Firmensitzes<br>
+    company.plz = Postleitzahl<br>
+    company.ceo = Geschäftsführer<br>
+    company.beauftragter = Datenschutz Beauftragter<br>
+    <br>
+    Beispiel: {{company.name}}
   </div>
   <%= f.submit "Daten speichern", class: 'btn btn-primary'%>
 <% end %>

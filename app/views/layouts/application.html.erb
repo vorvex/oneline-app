@@ -28,9 +28,20 @@
         <a class="navbar-brand" href="#">OnelineApp</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Einstellungen", "/einstellungen"  %></li>
             <li><%= link_to "Downloads", "/downloads"  %></li>
             <li><%= link_to "Link3", "/path3"  %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <% if current_admin? %>
+            <li><%= link_to "Admin", admin_path %></li>
+            <% end %>
+            <li><%= link_to "Einstellungen", "/einstellungen"  %></li>
+            <li><%= link_to "Ausloggen", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Anmelden", login_path %></li>
+            <li><%= link_to "Registrieren", signup_path %></li>
+            <% end %>
           </ul>
         </div>
       </div>

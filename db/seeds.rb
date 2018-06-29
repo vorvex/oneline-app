@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-u = User.create(:email => "admin@oneline-team.de", :password => "Start2018!", :password_confirmation => "Start2018!")
+u = User.create(:email => "admin@oneline-team.de", :password => "Start2018!", :password_confirmation => "Start2018!", :role_name => "admin")
 f = FormularCreator.create(:name => "Datenverarbeitung", :content => '<h1 style="text-align: center;"><strong>Schriftliche Einwilligung gem&auml;&szlig; Datenschutz&nbsp;</strong></h1>
 <p>&nbsp;</p>
 <p>Die im Vertrag angegebenen personenbezogenen Daten, insbesondere Name, Anschrift, Telefonnummer, Bankdaten, die allein zum Zwecke der Durchf&uuml;hrung des entstehenden Vertragsverh&auml;ltnisses notwendig und erforderlich sind, werden auf Grundlage gesetzlicher Berechtigungen erhoben.</p>

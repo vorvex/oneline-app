@@ -1,0 +1,20 @@
+<h1>Nutzer</h1>
+<table class="table table-hover">
+    <thead>
+      <td>ID</td>
+      <td>Email</td>
+      <td>Unternehmensname</td>
+      <td></td>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+          <td class="col-md-1"><%= user.id %></td>
+          <td class="col-md-3"><%= user.email %></td>
+          <td class="col-md-4"><%= user.company.name unless user.company.nil? %></td>
+          <td class="col-md-4" style="text-align: right;"></td>
+      </tr>
+      <% end %>
+    </tbody>  
+  </table>
+<%= link_to "Nutzer Anlegen", new_user_path %>
