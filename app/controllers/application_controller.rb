@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   
   def welcome
     if current_user.sign_in_count == 1
-      redirect_to new_password_path
+      redirect_to edit_user_registration_path
     end  
   end
   

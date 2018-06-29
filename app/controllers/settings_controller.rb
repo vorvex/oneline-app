@@ -1,6 +1,6 @@
 class SettingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_company!, except: [:company, :create_company]
+  before_action :authenticate_company!, except: [:company, :create_company, :new_password, :edit_password]
   def index
     
   end
@@ -25,23 +25,10 @@ class SettingsController < ApplicationController
     redirect_to root_path
   end
   
-  def new_password
-    @user = current_user
-  end
-  
-  def create_password
-    @user = current_user
-    @user.update(user_params)
-    redirect_to company_path
-  end
-  
   private
   
   def company_params
-    params.require(:company).permit(:user_id, :name, :strasse, :adresszusatz, :stadt, :plz, :ceo, :beauftragter)
+    params.require(:company).permit(:user_id, :name, :strasse, :adresszusatz, :plz, :stadt, :ceo, :datenschutz)
   end
-  
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
-  end
+
 end

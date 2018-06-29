@@ -25,10 +25,6 @@ Rails.application.routes.draw do
     get 'einstellungen/unternehmen_bearbeiten' => 'settings#edit_company', as: :edit_company
     patch 'einstellungen/unternehmen_update' => 'settings#update_company', as: :update_company
   
-    get 'neues_passwort' => 'settings#new_password', as: :new_password
-    patch 'neues_passwort' => 'settings#create_password', as: :create_password
-  
-  
     # Formular Creator
   
     get 'formular/editor' => 'formular_creator#index', as: :formular_index
