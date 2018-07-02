@@ -1,0 +1,28 @@
+<%= form_for(@website, :html => {class: "form-group", role: "form"}, url: update_website_path) do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <div class="form-group">
+    <%= f.label :url %>
+    <%= f.text_field :url, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :site_name %>
+    <%= f.text_field :site_name, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :template %>
+    <%= f.text_field :template, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :google_analytics_key %>
+    <%= f.text_field :google_analytics_key, autofocus: true, class: 'form-control' %>
+  </div>
+  <%= f.submit "Webseite erstellen", class: 'btn btn-primary'%>
+<% end %>

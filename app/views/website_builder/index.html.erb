@@ -1,0 +1,26 @@
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+          <h1>WebsiteBuilder</h1>
+          <ul class="list-group sub-items">
+            <li class="list-group-item" on-click="window.location = ('/webseite/seite/anzeigen/<%= Page.index(@website.id).id %>')"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <%= Page.index(@website.id).name %> <span style="float: right"><%= link_to "Bearbeiten", edit_page_url(Page.index(@website.id).id) %></span></li>
+            <ul class="list-group sub-items">
+            <% Page.index(@website.id).sections.each do |section| %>
+              <li class="list-group-item" style="text-indent: 2em">  <%= section.position %> <%= section.category %> <span style="float: right"><%= link_to "Bearbeiten", edit_section_url(section.id) %></span></li>
+            <% end %>
+            </ul>
+          </ul>
+          <ul class="list-group sub-items">
+            <% Page.where('website_id = ?', @website.id).where.not('parent_id IS NULL').each do |page| %>
+              <li class="list-group-item"><%= page.name %><span style="float: right"><%= link_to "Bearbeiten", edit_page_url(page.id) %></span></li>
+              <ul class="list-group sub-items">
+                <% page.sections.each do |section| %>
+                  <li class="list-group-item"><%= section.position %> <%= section.category %><span style="float: right"><%= link_to "Bearbeiten", edit_section_url(section.id) %></span></li>
+                <% end %>
+              </ul>
+            <% end %>  
+         </ul>
+      </div>
+    </div>
+  </div>

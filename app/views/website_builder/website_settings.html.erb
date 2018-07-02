@@ -1,0 +1,23 @@
+<%= form_for(@setting, :html => {class: "form-group", role: "form"}, url: update_website_settings_path) do |f| %>
+  <%= f.hidden_field :website_id, value: current_user.website.id %>
+  <div class="form-group">
+    <%= f.label :primary_color %>
+    <%= f.text_field :primary_color, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :secondary_color %>
+    <%= f.text_field :secondary_color, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :tertiary_color %>
+    <%= f.text_field :tertiary_color, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :background_color %>
+    <%= f.text_field :background_color, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+        <%= select_tag :font, "<option>Option </option><option>Option </option><option>Option </option><option>Option </option><option>Option </option><option>Option </option>".html_safe, class: 'form-control' %>
+  </div>
+  <%= f.submit "Einstellungen Aktualisieren", class: 'btn btn-primary'%>
+<% end %>

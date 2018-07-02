@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_28_233337) do
+ActiveRecord::Schema.define(version: 2018_06_30_214526) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -44,6 +44,36 @@ ActiveRecord::Schema.define(version: 2018_06_28_233337) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.integer "website_id"
+    t.integer "user_id"
+    t.integer "parent_id"
+    t.string "parent_name"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.integer "page_id"
+    t.integer "position"
+    t.string "category"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.integer "website_id"
+    t.string "primary_color"
+    t.string "secondary_color"
+    t.string "tertiary_color"
+    t.string "background_color"
+    t.string "font"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -61,6 +91,19 @@ ActiveRecord::Schema.define(version: 2018_06_28_233337) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "websites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "setting_id"
+    t.string "url"
+    t.string "title"
+    t.string "description"
+    t.string "site_name"
+    t.integer "template"
+    t.string "google_analytics_key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

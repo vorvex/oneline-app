@@ -41,6 +41,36 @@ Rails.application.routes.draw do
     post 'admin/nutzer_erstellen' => 'admin#create_user', as: :create_user
   
     resources :dashboard, only: [:index, :datenverarbeitung] do
-    resource :download, only: [:datenverarbeitung]
-  end
+      resource :download, only: [:datenverarbeitung]
+    end
+  
+  # Website Builder
+  
+  get 'webseite' => 'website_builder#index', as: :website_builder
+  get 'webseite/neu' => 'website_builder#new_website', as: :new_website
+  post 'webseite/erstellen' => 'website_builder#create_website', as: :create_website
+  get 'webseite/bearbeiten' => 'website_builder#edit_website', as: :edit_website
+  patch 'website/aktualisieren' => 'website_builder#update_website', as: :update_website
+  
+  get 'webseite/einstellungen' => 'website_builder#website_settings', as: :website_settings
+  patch 'webseite/einstellungen/aktualisieren' => 'website_builder#update_settings', as: :update_website_settings
+  
+  get 'webseite/seite/anzeigen/:id' => 'website_builder#show_page', as: :page
+  get 'webseite/seite/neu' => 'website_builder#new_page', as: :new_page
+  post 'webseite/seite/erstellen' => 'website_builder#create_page', as: :create_page
+  get 'webseite/seite/bearbeiten/:id' => 'website_builder#edit_page', as: :edit_page
+  patch 'webseite/seite/aktualisieren/:id' => 'website_builder#update_page', as: :update_page
+  delete 'webseite/seite/löschen/:id' => 'website_builder#destroy_page', as: :destroy_page
+  
+  get 'webseite/:page_id/abschnitt/neu' => 'website_builder#new_section', as: :new_section
+  post 'webseite/:page_id/abschnitt/erstellen' => 'website_builder#create_section', as: :create_section
+  get 'webseite/abschnitt/bearbeiten/:id' => 'website_builder#edit_section', as: :edit_section
+  patch 'webseite/abschnitt/aktualisieren/:id' => 'website_builder#update_section', as: :update_section
+  delete 'webseite/abschnitt/löschen/:id' => 'website_builder#destroy_section', as: :destroy_section
+  
+  
+  # Website
+  
+  get 'website/:url' => 'website#index', as: :index
+  get 'website/:url/:name' => 'website#page', as: :sub_page
 end

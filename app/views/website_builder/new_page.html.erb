@@ -1,0 +1,13 @@
+<%= form_for(@page, :html => {class: "form-group", role: "form"}, url: create_page_path) do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :website_id, value: current_user.website.id %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+      <label class="control-label">Parent</label>
+      <%= f.select :parent_id, options_for_select(Page.where('user_id = ?', current_user.id).map{|i| [i.name, i.id]}, selected: f.object.parent_id), {:include_blank => 'Dies ist die Startseite'}, { class: "form-control" } %>  
+  </div>
+  <%= f.submit "Neue Seite erstellen", class: 'btn btn-primary'%>
+<% end %>
