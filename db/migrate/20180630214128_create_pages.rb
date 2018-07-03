@@ -8,6 +8,9 @@ class CreatePages < ActiveRecord::Migration[5.2]
       t.string	:parent_name
       
       t.string :name
+      t.string :template
+      t.boolean :contact
+      t.boolean :map
       
       t.timestamps
     end

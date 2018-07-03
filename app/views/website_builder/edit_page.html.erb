@@ -9,5 +9,25 @@
       <label class="control-label">Parent</label>
       <%= f.select :parent_id, options_for_select(Page.where('user_id = ?', current_user.id).map{|i| [i.name, i.id]}, selected: f.object.parent_id), {:include_blank => 'Dies ist die Startseite'}, { class: "form-control" } %>  
   </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.label :template %>
+        <%= f.text_field :template, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>  
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.label :contact %>    
+        <%= f.check_box :contact, class: "checkbox") %>
+      </div>
+    </div> 
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.label :map %>    
+        <%= f.check_box :map, class: "checkbox") %>
+      </div>
+    </div> 
+  </div>
   <%= f.submit "Seite bearbeiten", class: 'btn btn-primary'%>
 <% end %>

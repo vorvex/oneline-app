@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_30_214526) do
+ActiveRecord::Schema.define(version: 2018_07_02_200818) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -37,9 +58,43 @@ ActiveRecord::Schema.define(version: 2018_06_30_214526) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "components", force: :cascade do |t|
+    t.integer "section_id"
+    t.string "category"
+    t.string "heading"
+    t.string "subheading"
+    t.string "content"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "formular_creators", force: :cascade do |t|
     t.string "name"
     t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "heros", force: :cascade do |t|
+    t.integer "page_id"
+    t.string "style"
+    t.string "header_slide_one"
+    t.string "subheader_slide_one"
+    t.string "button_slide_one"
+    t.string "link_slide_one"
+    t.string "header_slide_two"
+    t.string "subheader_slide_two"
+    t.string "button_slide_two"
+    t.string "link_slide_two"
+    t.string "header_slide_three"
+    t.string "subheader_slide_three"
+    t.string "button_slide_three"
+    t.string "link_slide_three"
+    t.string "header_slide_four"
+    t.string "subheader_slide_four"
+    t.string "button_slide_four"
+    t.string "link_slide_four"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,6 +105,9 @@ ActiveRecord::Schema.define(version: 2018_06_30_214526) do
     t.integer "parent_id"
     t.string "parent_name"
     t.string "name"
+    t.string "template"
+    t.boolean "contact"
+    t.boolean "map"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,7 +116,32 @@ ActiveRecord::Schema.define(version: 2018_06_30_214526) do
     t.integer "page_id"
     t.integer "position"
     t.string "category"
-    t.string "content"
+    t.string "header"
+    t.string "subheader"
+    t.string "background"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.integer "page_id"
+    t.string "style"
+    t.string "header_service_one"
+    t.string "description_service_one"
+    t.string "button_service_one"
+    t.string "link_service_one"
+    t.string "header_service_two"
+    t.string "description_service_two"
+    t.string "button_service_two"
+    t.string "link_service_two"
+    t.string "header_service_three"
+    t.string "description_service_three"
+    t.string "button_service_three"
+    t.string "link_service_three"
+    t.string "header_service_four"
+    t.string "description_service_four"
+    t.string "button_service_four"
+    t.string "link_service_four"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,6 +153,9 @@ ActiveRecord::Schema.define(version: 2018_06_30_214526) do
     t.string "tertiary_color"
     t.string "background_color"
     t.string "font"
+    t.string "font_color"
+    t.string "header_color"
+    t.string "footer_color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,13 +181,13 @@ ActiveRecord::Schema.define(version: 2018_06_30_214526) do
 
   create_table "websites", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "setting_id"
     t.string "url"
     t.string "title"
     t.string "description"
     t.string "site_name"
-    t.integer "template"
-    t.string "google_analytics_key"
+    t.string "layout"
+    t.string "header"
+    t.string "footer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

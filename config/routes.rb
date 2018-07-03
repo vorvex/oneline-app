@@ -53,7 +53,8 @@ Rails.application.routes.draw do
   patch 'website/aktualisieren' => 'website_builder#update_website', as: :update_website
   
   get 'webseite/einstellungen' => 'website_builder#website_settings', as: :website_settings
-  patch 'webseite/einstellungen/aktualisieren' => 'website_builder#update_settings', as: :update_website_settings
+  post 'webseite/einstellungen/aktualisieren' => 'website_builder#create_settings'
+  patch 'webseite/einstellungen/aktualisieren' => 'website_builder#update_settings'
   
   get 'webseite/seite/anzeigen/:id' => 'website_builder#show_page', as: :page
   get 'webseite/seite/neu' => 'website_builder#new_page', as: :new_page

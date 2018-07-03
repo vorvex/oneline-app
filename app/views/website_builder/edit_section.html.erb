@@ -8,8 +8,6 @@
       <label class="control-label">Kategorie</label>
       <%= select_tag :category, "<option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option><option>Option 5</option><option>Option 6</option>".html_safe, class: 'form-control' %>  
   </div>
-  <div class="form-group" >
-    <%= f.cktext_area :content, class: 'ckeditor', ckeditor: { language: 'de', height: '500px'} %>
-  </div>
+
   <%= f.submit "Abschnitt erstellen", class: 'btn btn-primary'%>
 <% end %>

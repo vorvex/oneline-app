@@ -17,12 +17,16 @@
     <%= f.text_field :site_name, autofocus: true, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :template %>
-    <%= f.text_field :template, autofocus: true, class: 'form-control' %>
+    <%= f.label :layout %>
+    <%= f.text_field :layout, autofocus: true, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :google_analytics_key %>
-    <%= f.text_field :google_analytics_key, autofocus: true, class: 'form-control' %>
+      <label class="control-label">Header</label>
+      <%= select_tag :header, "<option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option><option>Option 5</option><option>Option 6</option>".html_safe, class: 'form-control' %>  
+  </div>
+  <div class="form-group">
+      <label class="control-label">Footer</label>
+      <%= select_tag :footer, "<option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option><option>Option 5</option><option>Option 6</option>".html_safe, class: 'form-control' %>  
   </div>
   <%= f.submit "Webseite erstellen", class: 'btn btn-primary'%>
 <% end %>

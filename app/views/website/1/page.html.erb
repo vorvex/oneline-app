@@ -1,0 +1,26 @@
+<!-- Hero Image -->
+<% if @page.hero %>
+<%= render 'website/hero/#{@page.hero.style}/#{@page.hero.count}' %>
+<% end %>
+
+<!-- Services -->
+<% if @page.service %>
+<%= render 'website/service/#{@page.service.style}/#{@page.service.count}' %>
+<% end %>
+
+<!-- Sections -->  
+<% if @page.sections.any? %>
+  <% @page.sections.order('position ASC').each do |section| %>
+    <%= render 'website/sections/#{section.category}', section: section %>
+  <% end %>
+<% end %>
+
+<!-- Kontaktformular -->
+<% if @page.contact %>
+  <%= render 'website/contact/#{@website.contact.style}' %>
+<% end %>
+
+<!-- Map -->
+<% if @page.map %>
+  <%= render 'website/map/#{@website.map.style}' %>
+<% end %>

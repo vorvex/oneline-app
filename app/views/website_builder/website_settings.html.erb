@@ -1,4 +1,4 @@
-<%= form_for(@setting, :html => {class: "form-group", role: "form"}, url: update_website_settings_path) do |f| %>
+<%= form_for(@setting, :html => {class: "form-group", role: "form"}, url: webseite_einstellungen_aktualisieren_path) do |f| %>
   <%= f.hidden_field :website_id, value: current_user.website.id %>
   <div class="form-group">
     <%= f.label :primary_color %>
@@ -17,7 +17,24 @@
     <%= f.text_field :background_color, autofocus: true, class: 'form-control' %>
   </div>
   <div class="form-group">
-        <%= select_tag :font, "<option>Option </option><option>Option </option><option>Option </option><option>Option </option><option>Option </option><option>Option </option>".html_safe, class: 'form-control' %>
+    <%= f.label :font %>  
+    <%= select_tag :font, "<option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option><option>Option 5</option><option>Option 6</option>".html_safe, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :font_color %>
+    <%= f.text_field :font_color, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :header_color %>
+    <%= f.text_field :header_color, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :footer_color %>
+    <%= f.text_field :footer_color, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :logo %>
+    <%= f.file_field :logo, autofocus: true, class: 'form-control' %>
   </div>
   <%= f.submit "Einstellungen Aktualisieren", class: 'btn btn-primary'%>
 <% end %>

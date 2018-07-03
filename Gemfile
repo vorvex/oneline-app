@@ -8,6 +8,8 @@ gem 'rails', '~> 5.2.0'
 
 gem 'devise'
 
+gem "aws-sdk-s3", require: false
+
 gem 'twitter-bootstrap-rails'
 
 gem 'devise-bootstrap-views'

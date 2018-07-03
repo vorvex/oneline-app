@@ -5,7 +5,10 @@ class CreateSections < ActiveRecord::Migration[5.2]
       t.integer	:page_id
       t.integer :position
       t.string 	:category
-      t.string 	:content 
+      t.string 	:header
+      t.string  :subheader
+
+      t.string  :background
       
       t.timestamps
     end

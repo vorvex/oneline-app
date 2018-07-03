@@ -1,6 +1,8 @@
 class Page < ApplicationRecord
   belongs_to :user
   belongs_to :website
+  has_one :hero
+  has_one :service
   has_many :sections
 
   def children
