@@ -7,7 +7,7 @@
   </div>
   <div class="form-group">
       <label class="control-label">Parent</label>
-      <%= f.select :parent_id, options_for_select(Page.where('user_id = ?', current_user.id).map{|i| [i.name, i.id]}, selected: f.object.parent_id), {:include_blank => 'Dies ist die Startseite'}, { class: "form-control" } %>  
+      <%= f.select :parent_id, options_for_select(Page.where('user_id = ?', current_user.id).where.not('id = ?', @page.id).map{|i| [i.name, i.id]}, selected: f.object.parent_id), {:include_blank => 'Dies ist die Startseite'}, { class: "form-control" } %>  
   </div>
   <div class="row">
     <div class="col-md-4">

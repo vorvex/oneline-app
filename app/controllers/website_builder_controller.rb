@@ -51,24 +51,20 @@ class WebsiteBuilderController < ApplicationController
     end
   end
     
-  def show_page
+  def edit_page
     @page = Page.find(params[:id])
-    @sections = Section.where('page_id = ?', @page.id)
+    @sections = Section.where('page_id = ?', @page.id).order(:position)
     if @page.hero
-      @hero = current_user.hero
+      @hero = @page.hero
     else
       @hero = Hero.new
     end
     if @page.service
-      @service = current_user.service
+      @service = @page.service
     else
       @service = Service.new
     end    
   end
-    
-  def edit_page
-    @page = Page.find(params[:id])
-  end  
     
   def update_page
     @page = Page.find(params[:id])
@@ -78,7 +74,7 @@ class WebsiteBuilderController < ApplicationController
     else
       flash[:danger] = "Es gab ein Problem beim aktualisieren"
     end
-    redirect_to website_builder_path
+    redirect_to page_path(@page.id)
   end  
     
   def delete_page
@@ -103,14 +99,13 @@ class WebsiteBuilderController < ApplicationController
     @section = Section.new(section_params)
     if @section.save
       flash[:success] = "Abschnitt wurde erfolgreich erstellt"
-      create_components(params[:columns].to_i, @section.id)
     else
       flash[:danger] = "Es gab ein Problem beim Erstellen des Abschnitts"
     end  
     page_id = params[:section][:page_id]
     redirect_to page_url(page_id)
   end
-    
+  
   def edit_section
     @section = Section.find(params[:id])
   end  
@@ -123,13 +118,12 @@ class WebsiteBuilderController < ApplicationController
       flash[:danger] = "Es gab ein Problem beim aktualisieren"
     end
     page_id = params.require(:section).permit(:page_id)
-    redirect_to page_url(page_id)
+    redirect_to page_url(@section.page_id)
   end  
     
-  def delete_section
-    @section = section.find(params[:id])
-    if @sections.destroy
-      @section.destroy
+  def destroy_section
+    @section = Section.find(params[:id])
+    if @section.delete
       flash[:success] = "Abschnitt wurde erfolgreich gelöscht"
     else
       flash[:danger] = "Es gab ein Problem beim löschen"
@@ -137,6 +131,42 @@ class WebsiteBuilderController < ApplicationController
     redirect_to website_builder_path
   end
 
+# Components
+  
+  def create_component
+    @component = Component.new(component_params)
+    if @component.save
+      flash[:success] = "Element wurde erfolgreich erstellt"
+    else
+      flash[:danger] = "Es ist ein Fehler aufgetreten"
+    end
+      page = Section.find(@component.section_id).page
+      redirect_to page_path(page)
+  end
+  
+  def update_component
+    @component = Component.find(params[:id])
+    if @component.update(component_params)
+      flash[:success] = "Element wurde erfolgreich aktualisiert"
+    else
+      flash[:danger] = "Es ist ein Fehler aufgetreten"
+    end
+    page = Section.find(@component.section_id).website_id
+    redirect_to page_path(page)
+  end
+  
+  def delete_component
+    @component = Component.find(params[:id])
+    if @component.delete
+      flash[:success] = "Element wurde erfolgreich gelöscht"
+    else
+      flash[:danger] = "Es gab ein Problem beim löschen"
+    end
+    page = Section.find(@component.section_id).website_id
+    redirect_to page_path(page)
+  end
+  
+  
 # Website Settings    
     
   def website_settings
@@ -170,6 +200,78 @@ class WebsiteBuilderController < ApplicationController
     redirect_to website_settings_path
   end
     
+  # Service
+  
+  def create_service
+    @service = Service.new(service_params)
+    if @service.save
+      flash[:success] = "Element wurde erfolgreich erstellt"
+    else
+      flash[:danger] = "Es ist ein Fehler aufgetreten"
+    end
+      page = @service.page_id
+      redirect_to page_path(page)
+  end
+  
+  
+  def update_service
+    @service = Service.find(params[:id])
+    if @service.update(service_params)
+      flash[:success] = "Element wurde erfolgreich aktualisiert"
+    else
+      flash[:danger] = "Es ist ein Fehler aufgetreten"
+    end
+      page = @service.page_id
+      redirect_to page_path(page)
+  end
+  
+  def delete_service
+    @service = Service.find(params[:id])
+    if @service.delete
+      flash[:success] = "Element wurde erfolgreich gelöscht"
+    else
+      flash[:danger] = "Es ist ein Fehler aufgetreten"
+    end
+      page = @service.page_id
+      redirect_to page_path(page)
+  end
+  
+  # Hero
+  
+  def create_hero
+    @hero = Hero.new(hero_params)
+    if @hero.save
+      flash[:success] = "Element wurde erfolgreich erstellt"
+    else
+      flash[:danger] = "Es ist ein Fehler aufgetreten"
+    end
+      page = @hero.page_id
+      redirect_to page_path(page)
+  end
+  
+  
+  def update_hero
+    @hero = Hero.find(params[:id])
+    if @hero.update(hero_params)
+      flash[:success] = "Element wurde erfolgreich aktualisiert"
+    else
+      flash[:danger] = "Es ist ein Fehler aufgetreten"
+    end
+      page = @hero.page_id
+      redirect_to page_path(page)
+  end
+  
+  def delete_hero
+    @hero = Hero.find(params[:id])
+    if @hero.delete
+      flash[:success] = "Element wurde erfolgreich gelöscht"
+    else
+      flash[:danger] = "Es ist ein Fehler aufgetreten"
+    end
+      page = @hero.page_id
+      redirect_to page_path(page)
+  end
+  
   private
     
     def website_params
@@ -185,7 +287,7 @@ class WebsiteBuilderController < ApplicationController
     end
     
     def section_params
-      params.require(:section).permit(:page_id, :position, :category, :header, :subheader, :component_one, :component_two, :component_three, :component_four, :background, :background_image)
+      params.require(:section).permit(:page_id, :category, :header, :subheader, :component_one, :component_two, :component_three, :component_four, :background, :background_image)
     end
     
     def component_params

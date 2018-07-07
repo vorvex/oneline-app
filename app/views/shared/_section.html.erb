@@ -1,0 +1,24 @@
+<div class="panel panel-info" id="section_<%= section.id %>">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= section.header %> <span class="pull-right"><%= render :partial => 'shared/edit_section_modal', :locals =>{:section => section} %></span></h3>
+  </div>
+  <div class="panel-body" id="components" data-url="<%= sort_component_path %>" data-behavior="sortable">
+    <% for column in 1..section.columns.to_i %>
+      <div class="col-md-<%= 12/section.columns.to_i %>" id="component_<%= component.where('position = ?', column).first.id unless component.where('position = ?', column).empty? %>">
+        <div class="panel panel-info">
+          <div class="panel-body" style="text-align: center;" >
+            <% if component.where('position = ?', column).first %>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editComponent" style="width: 100%; margin-top: 10px;">
+                <%= component.where('position = ?', column).first.heading %>
+              </button>
+              <%= render :partial => 'shared/edit_component_modal', :locals =>{:component => component.where('position = ?', column).first } %>
+            <% else %>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newComponent" style="width: 100%; margin-top: 10px;">+</button>
+              <%= render :partial => 'shared/new_component_modal', :locals =>{:section => section, :position => column} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

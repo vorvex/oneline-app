@@ -1,40 +1,42 @@
 <%= form_for(@setting, :html => {class: "form-group", role: "form"}, url: webseite_einstellungen_aktualisieren_path) do |f| %>
   <%= f.hidden_field :website_id, value: current_user.website.id %>
-  <div class="form-group">
-    <%= f.label :primary_color %>
-    <%= f.text_field :primary_color, autofocus: true, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :secondary_color %>
-    <%= f.text_field :secondary_color, autofocus: true, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :tertiary_color %>
-    <%= f.text_field :tertiary_color, autofocus: true, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :background_color %>
-    <%= f.text_field :background_color, autofocus: true, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :font %>  
-    <%= select_tag :font, "<option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option><option>Option 5</option><option>Option 6</option>".html_safe, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :font_color %>
-    <%= f.text_field :font_color, autofocus: true, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :header_color %>
-    <%= f.text_field :header_color, autofocus: true, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :footer_color %>
-    <%= f.text_field :footer_color, autofocus: true, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :logo %>
-    <%= f.file_field :logo, autofocus: true, class: 'form-control' %>
+  <div class="row">
+    <div class="form-group col-xs-2">
+      <%= f.label "Hauptfarbe" %>
+      <%= f.color_field :primary_color, autofocus: true, class: 'form-control' %>
+    </div>
+    <div class="form-group col-xs-2">
+      <%= f.label "Sekundäre Farbe" %>
+      <%= f.color_field :secondary_color, autofocus: true, class: 'form-control' %>
+    </div>
+    <div class="form-group col-xs-2">
+      <%= f.label "Dritte Farbe" %>
+      <%= f.color_field :tertiary_color, autofocus: true, class: 'form-control' %>
+    </div>
+    <div class="form-group col-xs-2">
+      <%= f.label "Hintergrund Farbe" %>
+      <%= f.color_field :background_color, autofocus: true, class: 'form-control' %>
+    </div>
+    <div class="form-group col-xs-2">
+      <%= f.label "Schriftfarbe" %>
+      <%= f.color_field :font_color, autofocus: true, class: 'form-control' %>
+    </div>
+    <div class="form-group col-xs-2">
+      <%= f.label "Farbe Kopfzeile" %>
+      <%= f.color_field :header_color, autofocus: true, class: 'form-control' %>
+    </div>
+    <div class="form-group col-xs-2">
+      <%= f.label "Farbe Fußzeile" %>
+      <%= f.color_field :footer_color, autofocus: true, class: 'form-control' %>
+    </div>
+    <div class="form-group col-xs-6">
+      <%= f.label "Schrift" %>  
+      <%= select_tag :font, "<option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option><option>Option 5</option><option>Option 6</option>".html_safe, class: 'form-control' %>
+    </div>
+    <div class="form-group col-xs-4">
+      <%= f.label "Logo" %>
+      <%= f.file_field :logo, autofocus: true, class: 'form-control' %>
+    </div>
   </div>
   <%= f.submit "Einstellungen Aktualisieren", class: 'btn btn-primary'%>
 <% end %>

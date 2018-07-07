@@ -1,5 +1,5 @@
 class Hero < ApplicationRecord
-  belongs_to :page
+  belongs_to :page, dependent: :destroy
   has_one_attached :image_slide_one
   has_one_attached :image_slide_two
   has_one_attached :image_slide_three

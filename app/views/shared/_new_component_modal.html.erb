@@ -1,0 +1,42 @@
+<!-- Modal -->
+<div class="modal fade" id="newComponent" tabindex="-1" role="dialog" aria-labelledby="newComponentLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for(Component.new, :html => {class: "form-group", role: "form"}, url: create_component_path) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="newComponentLabel">Neues Element</h4>
+        </div>
+        <div class="modal-body">
+          <%= f.hidden_field :section_id, value: section.id %>
+          <%= f.hidden_field :position, value: position %>
+          <%= f.hidden_field :category, value: section.column_type(position) %>
+          <% if section.column_type(position) == "complete" %>
+            <div class="form-group">
+              <%= f.label :heading %>
+              <%= f.text_field :heading, autofocus: true, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :subheading %>
+              <%= f.text_field :subheading, autofocus: true, class: 'form-control' %>
+            </div>
+          <% end %>
+          <% if section.column_type(position) != "img"  %>
+           <div class="form-group">
+            <%= f.cktext_area :content, class: 'ckeditor', ckeditor: { language: 'de', width: '100%', height: '300px' } %>
+           </div>
+          <% elsif section.column_type(position) == "img" %>
+           <div class="form-group">
+              <%= f.label "Logo" %>
+              <%= f.file_field :logo, autofocus: true, class: 'form-control' %>
+            </div>
+          <% end %>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+          <%= f.submit "Element erstellen", class: 'btn btn-primary'%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

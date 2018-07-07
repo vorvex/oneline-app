@@ -1,0 +1,7 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1><%= section.columns.order(:position).first.header unless section.columns.order(:position).first.header != "" %></h1>
+    <h2><%= section.columns.order(:position).first.subheader unless section.columns.order(:position).first.subheader != "" %></h2>
+    <%= raw section.columns.order(:position).first.content unless section.columns.order(:position).first.content != "" %>
+  </div>
+</div>

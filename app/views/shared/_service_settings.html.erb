@@ -1,0 +1,118 @@
+<%= form_for(@service, :html => {class: "form-group", role: "form"}, url: create_service_path) do |f| %>
+  <%= f.hidden_field :page_id, value: @page.id %>
+      <div style="margin-bottom: 20px;">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a data-toggle="tab" href="#service_slide1" role="tab" aria-controls="service_slide1" >Leistung 1</a>
+            </li>
+            <li role="presentation">
+              <a data-toggle="tab" href="#service_slide2" role="tab" aria-controls="service_slide2" >Leistung 2</a>
+            </li>
+            <li role="presentation">
+              <a data-toggle="tab" href="#service_slide3" role="tab" aria-controls="service_slide3" >Leistung 3</a>
+            </li>
+            <li role="presentation">
+              <a data-toggle="tab" href="#service_slide4" role="tab" aria-controls="service_slide4" >Leistung 4</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="service_slide1">
+          <div class="form-group">
+            <%= f.label 'Überschrift', style: 'margin-top: 20px;' %>
+            <%= f.text_field :header_service_one, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Beschreibung' %>
+            <%= f.text_field :description_service_one, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Button"%>
+            <%= f.text_field :button_service_one, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Link'%>
+            <%= f.text_field :link_service_one, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Icon'%>
+            <%= f.file_field :icon_service_one, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="service_slide2">
+          <div class="form-group">
+            <%= f.label 'Überschrift', style: 'margin-top: 20px;' %>
+            <%= f.text_field :header_service_two, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Beschreibung' %>
+            <%= f.text_field :description_service_two, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Button"%>
+            <%= f.text_field :button_service_two, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Link'%>
+            <%= f.text_field :link_service_two, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Icon'%>
+            <%= f.file_field :icon_service_two, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="service_slide3">
+          <div class="form-group">
+            <%= f.label 'Überschrift', style: 'margin-top: 20px;' %>
+            <%= f.text_field :header_service_three, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Beschreibung' %>
+            <%= f.text_field :description_service_three, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Button" %>
+            <%= f.text_field :button_service_three, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Link' %>
+            <%= f.text_field :link_service_three, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Icon' %>
+            <%= f.file_field :icon_service_three, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="service_slide4">
+          <div class="form-group">
+            <%= f.label 'Überschrift', style: 'margin-top: 20px;' %>
+            <%= f.text_field :header_service_four, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Beschreibung' %>
+            <%= f.text_field :description_service_four, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Button" %>
+            <%= f.text_field :button_service_four, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Link' %>
+            <%= f.text_field :link_service_four, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Icon' %>
+            <%= f.file_field :icon_service_four, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+  </div>
+    <hr />
+    <div class="form-group">
+      <%= f.label :style %>  
+      <%= select_tag :style, "<option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option><option>Option 5</option><option>Option 6</option>".html_safe, class: 'form-control' %>
+    </div>
+    <%= f.submit "Abschicken", class: 'btn btn-primary'%>
+<% end %>

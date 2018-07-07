@@ -1,0 +1,119 @@
+<%= form_for(@hero, :html => {class: "form-group", role: "form"}, url: create_hero_path) do |f| %>
+  <%= f.hidden_field :page_id, value: @page.id %>
+  <div style="margin-bottom: 20px;">
+        <h4>Slides</h4>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a data-toggle="tab" href="#slide1" role="tab" aria-controls="slide1" >Slide 1</a>
+            </li>
+            <li role="presentation">
+              <a data-toggle="tab" href="#slide2" role="tab" aria-controls="slide2" >Slide 2</a>
+            </li>
+            <li role="presentation">
+              <a data-toggle="tab" href="#slide3" role="tab" aria-controls="slide3" >Slide 3</a>
+            </li>
+            <li role="presentation">
+              <a data-toggle="tab" href="#slide4" role="tab" aria-controls="slide4" >Slide 4</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="slide1">
+          <div class="form-group">
+            <%= f.label 'Überschrift', style: 'margin-top: 20px;' %>
+            <%= f.text_field :header_slide_one, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Zwischenüberschrift' %>
+            <%= f.text_field :subheader_slide_one, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Button"%>
+            <%= f.text_field :button_slide_one, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Link'%>
+            <%= f.text_field :link_slide_one, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Hintergrund-Bild'%>
+            <%= f.file_field :image_slide_one, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="slide2">
+          <div class="form-group">
+            <%= f.label 'Überschrift', style: 'margin-top: 20px;' %>
+            <%= f.text_field :header_slide_two, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Zwischenüberschrift' %>
+            <%= f.text_field :subheader_slide_two, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Button"%>
+            <%= f.text_field :button_slide_two, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Link'%>
+            <%= f.text_field :link_slide_two, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Hintergrund-Bild'%>
+            <%= f.file_field :image_slide_two, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="slide3">
+          <div class="form-group">
+            <%= f.label 'Überschrift', style: 'margin-top: 20px;' %>
+            <%= f.text_field :header_slide_three, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Zwischenüberschrift' %>
+            <%= f.text_field :subheader_slide_three, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Button" %>
+            <%= f.text_field :button_slide_three, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Link' %>
+            <%= f.text_field :link_slide_three, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Hintergrund-Bild' %>
+            <%= f.file_field :image_slide_three, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="slide4">
+          <div class="form-group">
+            <%= f.label 'Überschrift', style: 'margin-top: 20px;' %>
+            <%= f.text_field :header_slide_four, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Zwischenüberschrift' %>
+            <%= f.text_field :subheader_slide_four, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Button" %>
+            <%= f.text_field :button_slide_four, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Link' %>
+            <%= f.text_field :link_slide_four, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Hintergrund-Bild' %>
+            <%= f.file_field :image_slide_four, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+  </div>
+  <hr />
+  <div class="form-group">
+    <%= f.label :style %>  
+    <%= select_tag :style, "<option>Option 1</option><option>Option 2</option><option>Option 3</option><option>Option 4</option><option>Option 5</option><option>Option 6</option>".html_safe, class: 'form-control' %>
+  </div>
+  <%= f.submit "Abschicken", class: 'btn btn-primary'%>
+<% end %>

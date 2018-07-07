@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
-  helper_method :authenticate_admin!, :authenticate_company!, :current_admin?, :welcome
+  helper_method :authenticate_admin!, :authenticate_company!, :current_admin?, :welcome, :bootstrap_class_for
   
   def set_locale
     I18n.locale = 'de' || I18n.default_locale
@@ -28,6 +28,21 @@ class ApplicationController < ActionController::Base
     if current_user.sign_in_count == 1
       redirect_to edit_user_registration_path
     end  
+  end
+  
+   def bootstrap_class_for flash_type
+    case flash_type
+      when :success
+        "alert-success"
+      when :error
+        "alert-error"
+      when :alert
+        "alert-block"
+      when :notice
+        "alert-info"
+      else
+        flash_type.to_s
+    end
   end
   
 end

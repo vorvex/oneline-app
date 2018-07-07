@@ -1,6 +1,6 @@
 class Page < ApplicationRecord
   belongs_to :user
-  belongs_to :website
+  belongs_to :website, dependent: :destroy
   has_one :hero
   has_one :service
   has_many :sections

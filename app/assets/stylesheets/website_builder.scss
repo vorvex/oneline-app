@@ -1,3 +1,52 @@
 // Place all the styles related to the website_builder controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.s-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.one{background: url(/section_categories/1.jpg) no-repeat; background-size: 100%;}
+.two{background: url(/section_categories/2.jpg) no-repeat; background-size: 100%;}
+.three{background: url(/section_categories/3.jpg) no-repeat; background-size: 100%;}
+.four{background: url(/section_categories/4.jpg) no-repeat; background-size: 100%;}
+.five{background: url(/section_categories/5.jpg) no-repeat; background-size: 100%;}
+.six{background: url(/section_categories/6.jpg) no-repeat; background-size: 100%;}
+.seven{background: url(/section_categories/7.jpg) no-repeat; background-size: 100%;}
+.eight{background: url(/section_categories/8.jpg) no-repeat; background-size: 100%;}
+.nine{background: url(/section_categories/9.jpg) no-repeat; background-size: 100%;}
+.ten{background: url(/section_categories/10.jpg) no-repeat; background-size: 100%;}
+
+
+.s-selector input:active +.drinkcard-cc{opacity: .9;}
+.s-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100%;
+    height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.0) grayscale(.5) opacity(.7);
+       -moz-filter: brightness(1.0) grayscale(.5) opacity(.7);
+            filter: brightness(1.0) grayscale(.5) opacity(.7);
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.0) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.0) grayscale(.5) opacity(.9);
+            filter: brightness(1.0) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}

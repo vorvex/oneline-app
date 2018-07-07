@@ -1,6 +1,6 @@
 class Website < ApplicationRecord
 has_one :setting
-belongs_to :user
+belongs_to :user, dependent: :destroy
 has_many :pages
 
   def index

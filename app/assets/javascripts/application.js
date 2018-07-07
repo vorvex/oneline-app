@@ -12,7 +12,10 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require activestorage
+//= require jquery_ujs
+//= require jquery-ui/widget
+//= require jquery-ui/widgets/sortable
+//= require twitter/bootstrap
 //= require turbolinks
 //= require ckeditor/init
 //= require_tree .

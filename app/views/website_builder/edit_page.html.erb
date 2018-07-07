@@ -1,33 +1,111 @@
-<%= form_for(@page, :html => {class: "form-group", role: "form"}, url: update_page_path) do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :website_id, value: current_user.website.id %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-      <label class="control-label">Parent</label>
-      <%= f.select :parent_id, options_for_select(Page.where('user_id = ?', current_user.id).map{|i| [i.name, i.id]}, selected: f.object.parent_id), {:include_blank => 'Dies ist die Startseite'}, { class: "form-control" } %>  
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= f.label :template %>
-        <%= f.text_field :template, autofocus: true, class: 'form-control' %>
+<h1><%= @page.name %></h1>
+<div class="row">
+  <div class="col-md-9">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Hero
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <%= render 'shared/hero_settings', path: @path %>
+          </div>
+        </div>
       </div>
-    </div>  
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= f.label :contact %>    
-        <%= f.check_box :contact, class: "checkbox") %>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Leistungen
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <%= render 'shared/service_settings' %>
+          </div>
+        </div>
       </div>
-    </div> 
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= f.label :map %>    
-        <%= f.check_box :map, class: "checkbox") %>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Abschnitte
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body" id="sections" data-url="<%= sort_section_path %>" data-behavior="sortable">
+            <% @sections.each do |section| %>
+              <%= render :partial => 'shared/section', :locals =>{:section => section, :component => section.components.order(:position)} %>
+            <% end %>
+          </div>
+          <div class="panel-body">
+            <%= render 'shared/new_section_modal' %>
+          </div>
+        </div>
       </div>
-    </div> 
+    </div>
   </div>
-  <%= f.submit "Seite bearbeiten", class: 'btn btn-primary'%>
-<% end %>
+  <div class="col-md-3">
+    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingSideThree">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseSideThree" aria-expanded="true" aria-controls="collapseSideThree">
+              Seiten Einstellungen
+            </a>
+          </h4>
+        </div>
+        <div id="collapseSideThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSideThree">
+          <div class="panel-body">
+            <%= form_for(@page, :html => {class: "form-group", role: "form"}, url: update_page_path) do |f| %>
+              <div class="form-group">
+                <%= f.label :name %>
+                <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Eltern</label>
+                <%= f.select :parent_id, options_for_select(Page.where('user_id = ?', current_user.id).where.not('id = ?', @page.id).map{|i| [i.name, i.id]}, selected: f.object.parent_id), {:include_blank => 'Dies ist die Startseite'}, { class: "form-control" } %>  
+              </div>
+              <div class="form-group">
+                <%= f.label :template %>
+                <%= f.text_field :template, autofocus: true, class: 'form-control' %>
+              </div>
+              <div class="checkbox">  
+                <label> 
+                  <%= f.check_box :contact %>  Kontaktformular
+                </label>
+              </div>
+              <div class="checkbox"> 
+                <label>
+                  <%= f.check_box :map %> Karte
+                </label>
+              </div>
+              <%= f.submit "Seite aktualisieren", class: 'btn btn-primary'%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingSideFour">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseSideFour" aria-expanded="false" aria-controls="collapseSideFour">
+              SEO
+            </a>
+          </h4>
+        </div>
+        <div id="collapseSideFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSideFour">
+          <div class="panel-body">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
