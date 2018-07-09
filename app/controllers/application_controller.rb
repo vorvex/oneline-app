@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
     I18n.locale = 'de' || I18n.default_locale
   end
   
+  def active
+    @active = 'Index'
+  end
+  
   def authenticate_admin!
     @user = User.find(current_user.id)
     if @user.role_name != 'admin'

@@ -20,3 +20,33 @@
 //= require ckeditor/init
 //= require_tree .
 
+document.addEventListener("turbolinks:load", function() {
+  
+  $('[data-behavior="sortable"]').sortable({
+    update: function(e, ui) {
+      Rails.ajax({
+        url: $(this).data("url"),
+        type: "PATCH",
+        data: $(this).sortable("serialize"),
+      });
+    }
+    
+  });
+  
+});
+
+// $('[data-behavior="ajaxForm"]').submit(function(e) {
+//    $.ajax({
+//           type: "POST",
+//           url: $(this).data("url"),
+//           data: $("#idForm").serialize(),
+//           success: function(data)
+//           {
+//               alert(data); 
+//           }
+//         });
+//
+//    e.preventDefault(); // avoid to execute the actual submit of the form.
+// });
+
+

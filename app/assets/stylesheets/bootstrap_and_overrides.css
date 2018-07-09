@@ -4,3 +4,11 @@
   Static version of css will use Glyphicons sprites by default
   =require twitter-bootstrap-static/sprites
 */
+a:hover, a:focus {
+  color: '';
+  text-decoration: none;
+}
+
+.collapse.in {
+    display: block !important;
+}

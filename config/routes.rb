@@ -68,8 +68,8 @@ Rails.application.routes.draw do
   patch 'webseite/abschnitt/aktualisieren/:id' => 'website_builder#update_section', as: :update_section
   delete 'webseite/abschnitt/loeschen/:id' => 'website_builder#destroy_section', as: :destroy_section
   
-  post  'website/seite/component/erstellen' => 'website_builder#create_component', as: :create_component
-  patch 'website/seite/component/aktualisieren/:id' => 'website_builder#update_component', as: :update_component
+  post  'website/seite/component/erstellen' => 'component#create', as: :create_component
+  patch 'website/seite/component/aktualisieren/:id' => 'component#update', as: :update_component
   delete 'website/seite/component/löschen/:id' => 'website_builder#delete_component', as: :delete_component
   
   post  'website/seite/service/erstellen' => 'website_builder#create_service', as: :create_service
