@@ -8,16 +8,14 @@
         <div class="panel panel-info">
           <div class="panel-body" style="text-align: center;" >
             <% if component.where('position = ?', column).first %>
-              <div id="section_<%= section.id %>_<%= column %>">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editComponent<%= component.where('position = ?', column).first.id %>" style="width: 100%; margin-top: 10px;">
-                  <%= component.where('position = ?', column).first.heading %>
-                </button>
-              </div>
-              <%= render :partial => 'shared/edit_component_modal', :locals =>{:component => component.where('position = ?', column).first, :section => section, :position => column} %>
+              <button type="button" class="btn btn-default" data-behavior="getModal" data-url="<%= update_modal_component_path(component.where('position = ?', column).first.id) %>" style="width: 100%; margin-top: 10px;">
+                <%= component.where('position = ?', column).first.heading %>
+              </button>
             <% else %>
               <div id="section_<%= section.id %>_<%= column %>">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newComponent" style="width: 100%; margin-top: 10px;">+</button>
-                <%= render :partial => 'shared/new_component_modal', :locals =>{:section => section, :position => column} %>
+                <button type="button" class="btn btn-default" data-behavior="createComponent" data-url="<%= create_modal_component_path %>" data-position="<%= column %>" data-section="<%= section.id %>" style="width: 100%; margin-top: 10px;">
+                  +
+                </button>
               </div>
             <% end %>
           </div>

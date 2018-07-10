@@ -1,0 +1,3 @@
+$('.modal-backdrop').remove();
+$('#editComponent<%= @component.id %>').modal('hide');
+$('#section_<%= @section %>_<%= @position %>').html("<%= j (render 'website_builder/ajax/delete_component.html') %>");

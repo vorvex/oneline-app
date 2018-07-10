@@ -2,16 +2,16 @@
 <div class="modal fade" id="newComponent" tabindex="-1" role="dialog" aria-labelledby="newComponentLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <%= form_for(Component.new, :html => {class: "form-group", role: "form"}, url: create_component_path, remote: true) do |f| %>
+      <%= form_for(@component, :html => {class: "form-group", role: "form"}, url: create_component_path, remote: true) do |f| %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="newComponentLabel">Neues Element</h4>
         </div>
         <div class="modal-body">
-          <%= f.hidden_field :section_id, value: section.id %>
-          <%= f.hidden_field :position, value: position %>
-          <%= f.hidden_field :category, value: section.column_type(position) %>
-          <% if section.column_type(position) == "complete" %>
+          <%= f.hidden_field :section_id, value: @section %>
+          <%= f.hidden_field :position, value: @position %>
+          <%= f.hidden_field :category, value: Section.find(@section).column_type(@position) %>
+          <% if Section.find(@section).column_type(@position) == "complete" %>
             <div class="form-group">
               <%= f.label :heading %>
               <%= f.text_field :heading, autofocus: true, class: 'form-control' %>
@@ -21,19 +21,23 @@
               <%= f.text_field :subheading, autofocus: true, class: 'form-control' %>
             </div>
           <% end %>
-          <% if section.column_type(position) != "img"  %>
+          <% if Section.find(@section).column_type(@position) != "img"  %>
            <div class="form-group">
-            <%= f.text_area :content, class: 'text_editor' %>
+            <%= f.text_area :content, class: 'updated_editor' %>
+             <script>
+              CKEDITOR.replaceAll('updated_editor');
+            </script>
            </div>
-          <% elsif section.column_type(position) == "img" %>
+          <% end %>
+          <% if Section.find(@section).column_type(@position) != "content" %>
            <div class="form-group">
-              <%= f.label "Logo" %>
-              <%= f.file_field :logo, autofocus: true, class: 'form-control' %>
+              <%= f.label "Bild" %>
+              <%= f.file_field :image, autofocus: true, class: 'form-control' %>
             </div>
           <% end %>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-          <input type="submit" name="commit" value="Element erstellen" class="btn btn-primary" data-disable-with="Element erstellen" data-dismiss="modal">
+          <input type="submit" name="commit" value="Element erstellen" class="btn btn-primary" data-disable-with="Element erstellen">
         </div>
       <% end %>
     </div>

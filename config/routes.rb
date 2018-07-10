@@ -58,19 +58,24 @@ Rails.application.routes.draw do
   
   get 'webseite/seite/anzeigen/:id' => 'website_builder#edit_page', as: :page
   get 'webseite/seite/neu' => 'website_builder#new_page', as: :new_page
+  get 'webseite/seite/modal/update/:id' => 'page#update_modal', as: :update_modal_page
   post 'webseite/seite/erstellen' => 'website_builder#create_page', as: :create_page
   patch 'webseite/seite/aktualisieren/:id' => 'website_builder#update_page', as: :update_page
   delete 'webseite/seite/löschen/:id' => 'website_builder#destroy_page', as: :destroy_page
   
-  get 'webseite/:page_id/abschnitt/neu' => 'website_builder#new_section', as: :new_section
+  patch 'section/sort' => 'section#sort', as: :sort_section
+  get 'webseite/:page_id/abschnitt/neu/:id' => 'section#create_modal', as: :create_modal_section
   post 'webseite/:page_id/abschnitt/erstellen' => 'website_builder#create_section', as: :create_section
   get 'webseite/abschnitt/bearbeiten/:id' => 'website_builder#edit_section', as: :edit_section
   patch 'webseite/abschnitt/aktualisieren/:id' => 'website_builder#update_section', as: :update_section
   delete 'webseite/abschnitt/loeschen/:id' => 'website_builder#destroy_section', as: :destroy_section
   
+  patch 'component/sort' => 'component#sort', as: :sort_component
+  get   'website/seite/component/erstellen' => 'component#create_modal', as: :create_modal_component
   post  'website/seite/component/erstellen' => 'component#create', as: :create_component
+  get   'website/seite/component/bearbeiten/:id' => 'component#update_modal', as: :update_modal_component
   patch 'website/seite/component/aktualisieren/:id' => 'component#update', as: :update_component
-  delete 'website/seite/component/löschen/:id' => 'website_builder#delete_component', as: :delete_component
+  delete 'website/seite/component/delete/:id' => 'component#delete', as: :delete_component
   
   post  'website/seite/service/erstellen' => 'website_builder#create_service', as: :create_service
   patch 'website/seite/service/aktualisieren/:id' => 'website_builder#update_service', as: :update_service
@@ -79,14 +84,6 @@ Rails.application.routes.draw do
   post  'website/seite/hero/erstellen' => 'website_builder#create_hero', as: :create_hero
   patch 'website/seite/hero/aktualisieren/:id' => 'website_builder#update_hero', as: :update_hero
   delete 'website/seite/hero/löschen/:id' => 'website_builder#delete_hero', as: :delete_hero
-  
-  # Sections
-  
-  patch 'section/sort' => 'section#sort', as: :sort_section
-  
-  #Components
-  
-  patch 'component/sort' => 'component#sort', as: :sort_component
   
   # Website
   

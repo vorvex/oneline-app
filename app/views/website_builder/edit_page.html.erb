@@ -1,68 +1,72 @@
 <% @page_title = @page.name %>
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-          <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Abschnitte
-            </a>
-          </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-          <div class="panel-body" id="sections" data-url="<%= sort_section_path %>" data-behavior="sortable">
-            <% @sections.each do |section| %>
-              <%= render :partial => 'shared/section', :locals =>{:section => section, :component => section.components.order(:position)} %>
-            <% end %>
-          </div>
-          <div class="panel-body">
-            <%= render 'shared/new_section_modal' %>
-          </div>
-          
-        </div>
+<% @page_editor = true %>
+<div id='modalContainer'></div>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Abschnitte
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body" id="sections" data-url="<%= sort_section_path %>" data-behavior="sortable">
+        <% @sections.each do |section| %>
+          <%= render :partial => 'shared/section', :locals =>{:section => section, :component => section.components.order(:position)} %>
+        <% end %>
       </div>
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingTwo">
-          <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Hero Section
-            </a>
-          </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-          <div class="panel-body">
-            <%= render 'shared/hero_settings', path: @path %>
-          </div>
-        </div>
+      <div class="panel-body">
+        <button type="button" class="btn btn-default" data-behavior="getModal" data-url="<%= create_modal_section_path(@page.id) %>" style="width: 100%; margin-top: 10px;">
+        Neuer Abschnitt
+        </button>
       </div>
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingThree">
-          <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Leistungen
-            </a>
-          </h4>
-        </div>
-        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-          <div class="panel-body">
-            <%= render 'shared/service_settings' %>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingFour">
-          <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-              SEO
-            </a>
-          </h4>
-        </div>
-        <div id="collapseSideFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-          <div class="panel-body">
-            
-          </div>
-        </div>
+
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Hero Section
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <%= render 'shared/hero_settings', path: @path %>
       </div>
     </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Leistungen
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <%= render 'shared/service_settings' %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFour">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          SEO
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSideFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body">
+
+      </div>
+    </div>
+  </div>
+</div>
 <script>
   CKEDITOR.replaceAll('text_editor');
 </script>

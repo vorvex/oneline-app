@@ -29,11 +29,31 @@ document.addEventListener("turbolinks:load", function() {
         type: "PATCH",
         data: $(this).sortable("serialize"),
       });
-    }
+    }    
+  });
+  
+  $('[data-behavior="getModal"]').on('click', function(){
+    $.ajax({
+      type: "GET",
+      url: $(this).data("url"),
+    });
+  });
+  
+  $('[data-behavior="createComponent"]').on('click', function(){
     
+    var data = {
+                  position: $(this).data('position'),
+                  section: $(this).data('section'),
+               };
+    $.ajax({
+      type: "GET",
+      url: $(this).data("url"),
+      data: data,
+    });
   });
   
 });
+
 
 // $('[data-behavior="ajaxForm"]').submit(function(e) {
 //    $.ajax({

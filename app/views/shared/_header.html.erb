@@ -5,8 +5,12 @@
         <span class="c-sidebar-toggle__bar"></span>
     </button>
 
-    <h2 class="c-navbar__title u-mr-auto"><%= @page_title %></h2>
-
+    <h2 class="c-navbar__title u-mr-auto">
+      <%= @page_title %>
+      <% if @page_editor %>
+        <button class="btn btn-primary btn-sm" data-behavior="getModal" data-url="<%= update_modal_page_path(@page.id) %>" >Edit</button>
+      <% end %>
+    </h2>
     <div class="c-dropdown u-hidden-down@mobile">
         <a class="c-notification dropdown-toggle" href="#" id="dropdownMenuUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="c-notification__icon">

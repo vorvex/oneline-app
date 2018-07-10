@@ -1,21 +1,15 @@
-<!-- Button trigger modal -->
-<div class="row">
-  <div class="col-sm-offset-4 col-sm-4">
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newSection" style="width: 100%; margin-top: 10px;">Neuer Abschnitt</button>
-  </div>
-</div>
-
 <!-- Modal -->
 <div class="modal fade" id="newSection" tabindex="-1" role="dialog" aria-labelledby="newSectionLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <%= form_for(Section.new, :html => {class: "form-group", role: "form"}, url: create_section_path(@page.id)) do |f| %>
+      <%= form_for(@section, :html => {class: "form-group", role: "form"}, url: create_section_path(@page.id)) do |f| %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="newSectionLabel">Neuer Abschnitt</h4>
         </div>
         <div class="modal-body">
           <%= f.hidden_field :page_id, value: @page.id %>
+          <%= f.hidden_field :position, value: @page.sections.count + 1 %>
           <div class="form-group">
             <%= f.label :header %>
             <%= f.text_field :header, autofocus: true, class: 'form-control' %>
@@ -25,47 +19,47 @@
             <%= f.text_field :subheader, autofocus: true, class: 'form-control' %>
           </div>
           <div class="row">
-            <div class="col-md-6 s-selector">
+            <div class="col-xs-6 s-selector">
               <input id="1" type="radio" name="section[category]" value="1" />
               <label class="drinkcard-cc one" for="1"></label>
             </div>
-            <div class="col-md-6 s-selector">
+            <div class="col-xs-6 s-selector">
               <input id="2" type="radio" name="section[category]" value="2" />
               <label class="drinkcard-cc two" for="2"></label>
             </div>
             
-            <div class="col-md-6 s-selector">
+            <div class="col-xs-6 s-selector">
               <input id="2_3-9" type="radio" name="section[category]" value="2_3-9" />
               <label class="drinkcard-cc three" for="2_3-9"></label>
             </div>
-            <div class="col-md-6 s-selector">
+            <div class="col-xs-6 s-selector">
               <input id="2_9-3" type="radio" name="section[category]" value="2_9-3" />
               <label class="drinkcard-cc four" for="2_9-3"></label>
             </div>
             
-            <div class="col-md-6 s-selector">
+            <div class="col-xs-6 s-selector">
               <input id="3" type="radio" name="section[category]" value="3" />
               <label class="drinkcard-cc five" for="3"></label>
             </div>
-            <div class="col-md-6 s-selector">
+            <div class="col-xs-6 s-selector">
               <input id="4" type="radio" name="section[category]" value="4" />
               <label class="drinkcard-cc six" for="4"></label>
             </div>
             
-            <div class="col-md-6 s-selector">
+            <div class="col-xs-6 s-selector">
               <input id="2_img-left" type="radio" name="section[category]" value="2_img-left" />
               <label class="drinkcard-cc seven" for="2_img-left"></label>
             </div>
-            <div class="col-md-6 s-selector">
+            <div class="col-xs-6 s-selector">
               <input id="2_img-right" type="radio" name="section[category]" value="2_img-right" />
               <label class="drinkcard-cc eight" for="2_img-right"></label>
             </div>
             
-            <div class="col-md-6 s-selector">
+            <div class="col-xs-6 s-selector">
               <input id="2_3-9_img" type="radio" name="section[category]" value="2_3-9_img" />
               <label class="drinkcard-cc nine" for="2_3-9_img"></label>
             </div>
-            <div class="col-md-6 s-selector">
+            <div class="col-xs-6 s-selector">
               <input id="2_9-3_img" type="radio" name="section[category]" value="2_9-3_img" />
               <label class="drinkcard-cc ten" for="2_9-3_img"></label>
             </div>

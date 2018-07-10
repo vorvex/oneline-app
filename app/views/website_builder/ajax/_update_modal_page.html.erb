@@ -1,0 +1,43 @@
+<!-- Modal -->
+<div class="modal fade" id="editPage" tabindex="-1" role="dialog" aria-labelledby="editPageLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for(@page, :html => {class: "form-group", role: "form"}, url: update_page_path(@page.id), remote: true) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="editPageLabel">Element bearbeiten</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+              <label class="control-label">Parent</label>
+              <%= f.select :parent_id, options_for_select(Page.where('user_id = ?', current_user.id).where.not('id = ?', @page.id).map{|i| [i.name, i.id]}, selected: f.object.parent_id), {:include_blank => 'Dies ist die Startseite'}, { class: "form-control" } %>  
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :template %>
+                <%= f.text_field :template, autofocus: true, class: 'form-control' %>
+              </div>
+            </div>  
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :contact %>    
+                <%= f.check_box :contact, class: "checkbox" %>
+              </div>
+            </div> 
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :map %>    
+                <%= f.check_box :map, class: "checkbox" %>
+              </div>
+            </div> 
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+          <input type="submit" name="commit" value="Element erstellen" class="btn btn-primary" data-disable-with="Element erstellen">
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
