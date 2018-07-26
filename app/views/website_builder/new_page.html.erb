@@ -1,3 +1,4 @@
+<% @page_title = 'Neue Seite' %>
 <%= form_for(@page, :html => {class: "form-group", role: "form"}, url: create_page_path) do |f| %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :website_id, value: current_user.website.id %>
@@ -5,10 +6,17 @@
     <%= f.label :name %>
     <%= f.text_field :name, autofocus: true, class: 'form-control' %>
   </div>
+  <% if Page.index(current_user.website.id).nil? %>
   <div class="form-group">
       <label class="control-label">Parent</label>
-      <%= f.select :parent_id, options_for_select(Page.where('user_id = ?', current_user.id).where.not('id = ?', @page.id).map{|i| [i.name, i.id]}, selected: f.object.parent_id), {:include_blank => 'Dies ist die Startseite'}, { class: "form-control" } %>  
+      <%= f.select :parent_id, options_for_select(Page.where('user_id = ?', current_user.id).map{|i| [i.name, i.id]}, selected: f.object.parent_id), {:include_blank => 'Dies ist die Startseite'}, { class: "form-control" } %>  
   </div>
+  <% else %>
+  <div class="form-group">
+      <label class="control-label">Parent</label>
+      <%= f.select :parent_id, options_for_select(Page.where('user_id = ?', current_user.id).map{|i| [i.name, i.id]}, selected: f.object.parent_id), { class: "form-control" } %>  
+  </div>
+  <% end %>
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">

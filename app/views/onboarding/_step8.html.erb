@@ -1,0 +1,11 @@
+<%= image_tag 'CorporateManagment.png', class:"ol-onboard-image" %>
+<%= form_for(@company, url: onboarding_step9_path, remote: true) do |f| %>
+    <div id="inner-content">
+      <h1 class="ol-onboarding-h1">Wir befinden uns fast am Ziel. Verknüpfen Sie nun Ihre Akkounts.</h1>
+      <div class="row ol-row">
+        <div class="col-xs-6 col-xs-offset-3">
+           <%= f.submit "Weiter", class: "btn ol-default" %>
+        </div>
+      </div>
+    </div>
+<% end %>

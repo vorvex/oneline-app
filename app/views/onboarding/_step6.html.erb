@@ -1,0 +1,12 @@
+<%= image_tag 'CorporateManagment.png', class:"ol-onboard-image" %>
+<h1 class="ol-onboarding-h1">Kommen wir nun zu Ihrer der Haupt-Telefonnummer für Ihren Laden.</h1>
+<div id="inner-content">
+  <%= form_for(@company, url: onboarding_step7_path, remote: true) do |f| %>
+    <div class="ol-input-group">
+      <%= f.text_field :name, autofocus: true, class: 'ol-text-input', placeholder: 'Telefon' %>
+      <span class="input-group-btn">
+        <%= f.submit "Weiter", class: "ol-btn" %>
+      </span>
+    </div>
+  <% end %>
+</div>

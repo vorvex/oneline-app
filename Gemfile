@@ -8,7 +8,13 @@ gem 'rails', '~> 5.2.0'
 
 gem 'devise'
 
+gem 'omniauth-google-oauth2'
+
 gem "aws-sdk-s3", require: false
+
+gem 'rest-client'
+
+gem 'json'
 
 gem 'twitter-bootstrap-rails'
 

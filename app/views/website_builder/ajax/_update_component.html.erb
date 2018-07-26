@@ -1,3 +1,11 @@
 <button type="button" class="btn btn-default" data-behavior="getModal" data-url="<%= update_modal_component_path(@component.id) %>" style="width: 100%; margin-top: 10px;">
   <%= @component.heading %>
 </button>
+<script>
+$('[data-behavior="getModal"]').on('click', function(){
+    $.ajax({
+      type: "GET",
+      url: $(this).data("url"),
+    });
+  });
+</script>

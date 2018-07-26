@@ -1,0 +1,17 @@
+<%= image_tag 'Advertisement.png', class:"ol-onboard-image" %>
+<div id="inner-content">
+  <h1 class="ol-onboarding-h1">Haben Sie einen Google Akkount zum Managen ihrer Daten?</h1>
+  <p>Bitte melden Sie sich mit dem Akkount an mit dem sie ihr Unternehmen präsentieren.</p>
+  <div class="row ol-row">
+    <div class="col-xs-6">
+      <%= form_for(@company, url: onboarding_stepa12_path, remote: true) do |f| %>
+      <%= f.submit "Ja", class: "btn ol-default" %>
+      <% end %>
+    </div>
+    <div class="col-xs-6">
+      <%= form_for(@company, url: onboarding_stepa12a_path, remote: true) do |f| %>
+      <%= f.submit "Nein", class: "btn ol-default" %>
+      <% end %>
+    </div>
+  </div>
+</div>

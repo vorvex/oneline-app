@@ -1,0 +1,4 @@
+var template = "<%= j (render 'onboarding/step4.html') %>";
+$('.ol-onboard-outer-container').fadeOut(400).delay(200);
+setTimeout("$('.ol-onboard-outer-container').html(template)", 400);
+$('.ol-onboard-outer-container').fadeIn(400);

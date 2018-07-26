@@ -1,0 +1,18 @@
+<h1> Haben Sie bereits eine Webseite?
+</h1>
+<div class="row">
+  <div class="col-md-6">
+    <button class="btn btn-default" id='ja' data-url="<%= has_website_path %>" type="button">Ja</button>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-default" id='nein' data-url="<%= no_website_path %>" type="button">Nein</button>
+  </div>
+</div>
+<script>
+$('.btn').on('click', function(){
+    $.ajax({
+      type: "GET",
+      url: $(this).data("url"),
+    });
+});
+</script>

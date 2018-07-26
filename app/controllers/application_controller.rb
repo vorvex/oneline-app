@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
-  helper_method :authenticate_admin!, :authenticate_company!, :current_admin?, :welcome, :bootstrap_class_for
+  helper_method :authenticate_admin!, :welcome!, :current_admin?, :bootstrap_class_for, :current_company
+
+  def current_company
+    @current_company ||= Company.find(session[:company_id]) if session[:company_id]
+  end
   
   def set_locale
     I18n.locale = 'de' || I18n.default_locale
@@ -17,20 +21,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def authenticate_company!
-    if current_user.company.nil?
-      flash[:notice] = "Bitte tragen Sie zuerst Ihre Daten eintragen"
-      redirect_to company_path
-    end
-  end
-  
   def current_admin?
     current_user.admin?
   end
   
-  def welcome
-    if current_user.sign_in_count == 1
-      redirect_to edit_user_registration_path
+  def welcome!
+    if current_user.company.nil?
+      redirect_to user_introduction_path
     end  
   end
   

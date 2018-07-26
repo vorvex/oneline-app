@@ -1,0 +1,12 @@
+<%= image_tag 'WebDevelopment.png', class:"ol-onboard-image" %>
+<div id="inner-content">
+  <h1 class="ol-onboarding-h1">Bitte geben Sie nun die Domain ihrer Webseite ein?</h1>
+  <%= form_for(@company, url: onboarding_stepa11_path, remote: true) do |f| %>
+  <div class="ol-input-group">
+    <%= f.text_field :url, autofocus: true, class: 'ol-text-input', placeholder: 'www.beispiel.de' %>
+    <span class="input-group-btn">
+      <%= f.submit "Weiter", class: "ol-btn" %>
+    </span>
+  </div>
+  <% end %>
+</div>

@@ -31,4 +31,5 @@ class CompanyDrop < Liquid::Drop
   def beauftragter
     @company["beauftragter"]
   end
+  
 end

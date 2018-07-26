@@ -4,28 +4,58 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   
   get 'settings/company'
-  get 'download/datenschuty'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_scope :user do
     get 'login' => 'devise/sessions#new', as: :login
-    get 'signup' => 'devise/registrations#new'
+    get 'signup' => 'devise/registrations#new', as: :signup
   end 
     root 'dashboard#index'
     
-    # Downloads
-    
+    get 'auth/:provider/callback' => 'auth_sessions#create'
+    get 'signout' => 'auth_sessions#destroy', as: :signoutgoogle
+
+    resources :auth_sessions, only: [:create, :destroy]
+
+    # Downloads 
     get 'downloads' => 'download#index'
     get 'download/:name' => 'download#formular', as: :formular
   
+    #User Onboarding
+    get 'willkommen' => 'onboarding#start', as: :onboarding
+    
+    post 'willkommen/step0' => 'onboarding#step0', as: :onboarding_step0
+    post 'willkommen/step1' => 'onboarding#step1', as: :onboarding_step1
+    post 'willkommen/step2' => 'onboarding#step2', as: :onboarding_step2
+    post 'willkommen/step2a' => 'onboarding#step2a', as: :onboarding_step2a
+    post 'willkommen/step3' => 'onboarding#step3', as: :onboarding_step3
+    post 'willkommen/step4' => 'onboarding#step4', as: :onboarding_step4
+    post 'willkommen/step4a' => 'onboarding#step4a', as: :onboarding_step4a
+    post 'willkommen/step4b' => 'onboarding#step4b', as: :onboarding_step4b
+    post 'willkommen/step5' => 'onboarding#step5', as: :onboarding_step5
+    post 'willkommen/step6' => 'onboarding#step6', as: :onboarding_step6
+    post 'willkommen/step6a' => 'onboarding#step6a', as: :onboarding_step6a
+    post 'willkommen/step7' => 'onboarding#step7', as: :onboarding_step7
+    post 'willkommen/step8' => 'onboarding#step8', as: :onboarding_step8
+    post 'willkommen/step9' => 'onboarding#step9', as: :onboarding_step9
+    post 'willkommen/step9a' => 'onboarding#step9a', as: :onboarding_step9a
+    post 'willkommen/step10' => 'onboarding#stepa10', as: :onboarding_stepa10
+    post 'willkommen/step11' => 'onboarding#stepa11', as: :onboarding_stepa11
+    post 'willkommen/step12' => 'onboarding#stepa12', as: :onboarding_stepa12
+    post 'willkommen/step12a' => 'onboarding#stepa12a', as: :onboarding_stepa12a
+    get 'auth/failure' => 'onboarding#google_oauth_failure', as: :google_failure
+    
+  
+  
+  
     # Settings
-    get 'einstellungen' => 'settings#edit_company'
-    get 'einstellungen/neu' => 'settings#company', as: :company
-    post 'einstellungen/unternehmen_erstellen' => 'settings#create_company', as: :create_company
+    # get 'einstellungen' => 'settings#edit_company'
+    # get 'einstellungen/neu' => 'settings#company', as: :company
+    # post 'einstellungen/unternehmen_erstellen' => 'settings#create_company', as: :create_company
     get 'einstellungen/unternehmen_bearbeiten' => 'settings#edit_company', as: :edit_company
     patch 'einstellungen/unternehmen_update' => 'settings#update_company', as: :update_company
   
-    # Formular Creator
+    # FormularCreator
   
     get 'formular/editor' => 'formular_creator#index', as: :formular_index
     get 'formular/editor/new' => 'formular_creator#new', as: :formular_new
@@ -44,7 +74,7 @@ Rails.application.routes.draw do
       resource :download, only: [:datenverarbeitung]
     end
   
-  # Website Builder
+  # WebsiteBuilder
   
   get 'webseite' => 'website_builder#index', as: :website_builder
   get 'webseite/neu' => 'website_builder#new_website', as: :new_website
@@ -66,7 +96,7 @@ Rails.application.routes.draw do
   patch 'section/sort' => 'section#sort', as: :sort_section
   get 'webseite/:page_id/abschnitt/neu/:id' => 'section#create_modal', as: :create_modal_section
   post 'webseite/:page_id/abschnitt/erstellen' => 'website_builder#create_section', as: :create_section
-  get 'webseite/abschnitt/bearbeiten/:id' => 'website_builder#edit_section', as: :edit_section
+  get 'webseite/abschnitt/bearbeiten/:id' => 'section#update_modal', as: :update_modal_section
   patch 'webseite/abschnitt/aktualisieren/:id' => 'website_builder#update_section', as: :update_section
   delete 'webseite/abschnitt/loeschen/:id' => 'website_builder#destroy_section', as: :destroy_section
   

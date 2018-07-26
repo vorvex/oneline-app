@@ -1,0 +1,33 @@
+<h1>Stellen Sie Bitte Ihre Unternehmensdaten ein.</h1>
+<%= form_for(@company, :html => {class: "form-group", role: "form"}, remote: true, url: create_company_path) do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <div class="form-group">
+    <%= f.label "Unternehmensname" %>
+    <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Straße & Hausnummer' %>
+    <%= f.text_field :strasse, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Adresszusatz' %>
+    <%= f.text_field :adresszusatz, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Stadt' %>
+    <%= f.text_field :stadt, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Postleitzahl' %>
+    <%= f.text_field :plz, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Geschäftsführer' %>
+    <%= f.text_field :ceo, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Datenschutzbeauftragter' %><p>Sollten Sie keinen Beauftragten haben lassen sie dieses Feld einfach frei.</p>
+    <%= f.text_field :beauftragter, autofocus: true, class: 'form-control' %>
+  </div>
+  <%= f.submit "Daten speichern", class: 'btn btn-primary'%>
+<% end %>

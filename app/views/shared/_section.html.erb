@@ -1,6 +1,8 @@
 <div class="panel panel-info" id="section_<%= section.id %>">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= section.header %> <span class="pull-right"><%= render :partial => 'shared/edit_section_modal', :locals =>{:section => section} %></span></h3>
+    <h3 class="panel-title"><%= section.header %><button type="button" class="btn btn-link pull-right" data-behavior="getModal" data-url="<%= update_modal_section_path(section.id) %>" ">
+                Bearbeiten
+              </button></h3>
   </div>
   <div class="panel-body" id="components" data-url="<%= sort_component_path %>" data-behavior="sortable">
     <% for column in 1..section.columns.to_i %>
@@ -8,9 +10,11 @@
         <div class="panel panel-info">
           <div class="panel-body" style="text-align: center;" >
             <% if component.where('position = ?', column).first %>
+            <div id="section_<%= section.id %>_<%= column %>">  
               <button type="button" class="btn btn-default" data-behavior="getModal" data-url="<%= update_modal_component_path(component.where('position = ?', column).first.id) %>" style="width: 100%; margin-top: 10px;">
-                <%= component.where('position = ?', column).first.heading %>
+                <%= raw component.where('position = ?', column).first.preview %>
               </button>
+            </div>
             <% else %>
               <div id="section_<%= section.id %>_<%= column %>">
                 <button type="button" class="btn btn-default" data-behavior="createComponent" data-url="<%= create_modal_component_path %>" data-position="<%= column %>" data-section="<%= section.id %>" style="width: 100%; margin-top: 10px;">

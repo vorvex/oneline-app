@@ -1,0 +1,22 @@
+<%= image_tag 'E-Commerce.png', class:"ol-onboard-image" %>
+<%= form_for(@company, url: onboarding_step6a_path, remote: true) do |f| %>
+  <div id="inner-content">
+    <h1 class="ol-onboarding-h1">In welchem Radius bedienen Sie Ihre Kunden?</h1>
+    <div class="ol-slider">
+      <amino-slider class="slider" data-min="1" data-max="20" data-value="10" data-step="1"></amino-slider>
+      <%= f.hidden_field :range, value: 10, id: 'range' %>
+      <script>
+        var $slider = $('.slider');
+        $slider.aminoSlider();
+      </script>
+    </div>
+    <div class="row ol-row">
+      <div class="col-xs-6">
+        <%= f.submit "Weiter", class: "btn ol-default" %>
+      </div>
+      <div class="col-xs-6">
+        <%= f.submit "Mehr als 20km", class: "btn ol-default" %>
+      </div>
+    </div>
+  </div>
+<% end %>

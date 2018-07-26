@@ -29,7 +29,7 @@
             </script>
            </div>
           <% end %>
-          <% if Section.find(@section).column_type(@position) != "content" %>
+          <% if Section.find(@section).column_type(@position) != "content"  %>
            <div class="form-group">
               <%= f.label "Bild" %>
               <%= f.file_field :image, autofocus: true, class: 'form-control' %>

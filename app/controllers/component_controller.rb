@@ -8,8 +8,8 @@ class ComponentController < ApplicationController
   
   def create_modal 
     @component = Component.new
-    @section = params[:section]
-    @position = params[:position]
+    @section = params[:section].to_i
+    @position = params[:position].to_i
     respond_to do |format|
       format.js { render partial: 'website_builder/ajax/create_modal_component' }
     end  

@@ -1,0 +1,17 @@
+<%= image_tag 'CorporateManagment.png', class:"ol-onboard-image" %>
+<div id="inner-content">
+  <h1 class="ol-onboarding-h1">Als nächstes benötigen wir Ihre Anschrift</h1>
+  <p>Hallo das ist ein Infotext Lorem Ipsum Dolor sit amet </p>
+  <div class="row ol-row">
+    <div class="col-xs-6">
+      <%= form_for(@company, url: onboarding_step9_path, remote: true) do |f| %>
+      <%= f.submit "Überspringen", class: "btn ol-white" %>
+      <% end %>
+    </div>
+    <div class="col-xs-6">
+      <%= form_for(@company, url: onboarding_step4_path, remote: true) do |f| %>
+      <%= f.submit "Weiter", class: "btn ol-default" %>
+      <% end %>
+    </div>
+  </div>
+</div>

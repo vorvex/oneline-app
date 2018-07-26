@@ -7,7 +7,6 @@ class DownloadController < ApplicationController
   def formular
     respond_to do |format|
       format.pdf { send_formular_pdf }
-
       if Rails.env.development?
         format.html { render_sample_html }
       end
@@ -31,4 +30,12 @@ class DownloadController < ApplicationController
       type: "application/pdf",
       disposition: "inline"
   end
+  
+    def render_sample_html 
+      @name = FormularCreator.find_by_name(params[:name])
+      company = CompanyDrop.new(current_user.company)
+      formular = Liquid::Template.parse(@name.content)
+      @formular = formular.render('company' => company)
+      render template: "formular/pdf", layout: "formular_pdf"
+    end
 end

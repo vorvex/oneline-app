@@ -1,0 +1,19 @@
+<div class="ol-onboarding">
+  <div class="ol-onboard-outer-container">
+    <%= image_tag 'CorporateManagment.png', class:"ol-onboard-image" %>
+    <div id="inner-content">
+      <h1 class="ol-onboarding-h1">Willkommen bei der Oneline Zentrale! Bitte nennen Sie uns den Namen Ihres Unternehmens</h1>
+      <%= form_for(@company, url: onboarding_step0_path, remote: true) do |f| %>
+      <div class="ol-input-group">
+        <%= f.text_field :name, autofocus: true, class: 'ol-text-input', placeholder: 'Unternehmensname' %>
+        <span class="input-group-btn">
+          <%= f.submit "Weiter", class: "ol-btn" %>
+        </span>
+      </div>
+      <% end %>
+      <script>
+        // Ajax goes here
+      </script>
+    </div>
+  </div>
+</div>

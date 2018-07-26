@@ -1,0 +1,9 @@
+<h1 class="ol-onboarding-h1">Vielen Dank. Bitte geben Sie nun den Geschäftsführer an.</h1>
+<%= form_for(@company, url: onboarding_step1_path, remote: true) do |f| %>
+<div class="ol-input-group">
+  <%= f.text_field :ceo, autofocus: true, class: 'ol-text-input', placeholder: 'Geschäftsführer' %>
+  <span class="input-group-btn">
+    <%= f.submit "Weiter", class: "ol-btn" %>
+  </span>
+</div>
+<% end %>

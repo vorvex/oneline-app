@@ -1,0 +1,42 @@
+<div id="inner-content">
+  <h1 class="ol-onboarding-h1" style="margin-bottom: 20px;">Wählen Sie als nächstes Ihre Branche aus.</h1>
+  <%= form_for(@company, url: onboarding_step2_path, remote: true) do |f| %>
+  <div class="row ol-row">
+    <div class="col-sm-4 col-xs-6" style="margin-bottom: 20px;">
+      <input class="radio" type="radio" id="company_field_einzelhandel" name="company[field]" value="einzelhandel" >
+      <label class="radio" for="company_field_einzelhandel">
+        Einzelhandel
+      </label>
+    </div>
+    <div class="col-sm-4 col-xs-6" style="margin-bottom: 20px;">
+      <input class="radio" type="radio" id="company_field_handwerker" name="company[field]" value="handwerker" />
+      <label class="radio" for="company_field_handwerker">
+        Handwerksbetrieb
+      </label>
+    </div>
+    <div class="col-sm-4 col-xs-6" style="margin-bottom: 20px;">
+      <input class="radio" type="radio" id="company_field_gastronomie" name="company[field]" value="gastronomie" >
+      <label class="radio" for="company_field_gastronomie">
+        Gastronomie
+      </label>
+    </div>
+    <div class="col-sm-4 col-sm-offset-2 col-xs-6" style="margin-bottom: 20px;">
+      <input class="radio" type="radio" id="company_field_b2b" name="company[field]" value="b2b" >
+      <label class="radio" for="company_field_b2b">
+        B2B
+      </label>
+    </div>
+    <div class="col-sm-4 col-xs-6" style="margin-bottom: 20px;">
+      <input class="radio" type="radio" id="company_field_sonstige" name="company[field]" value="sonstige" >
+      <label class="radio" for="company_field_sonstige">
+        Sonstige
+      </label>
+    </div>
+  </div>
+  <div class="row ol-row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= f.submit "Weiter", class: "btn ol-default" %>
+    </div>
+  </div>
+  <% end %>
+</div>

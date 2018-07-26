@@ -19,7 +19,10 @@ class SectionController < ApplicationController
   end
   
   def update_modal
-    
+    @section = Section.find(params[:id])
+    respond_to do |format|
+      format.js { render partial: 'website_builder/ajax/update_modal_section' }
+    end
   end
   
   def update

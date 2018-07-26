@@ -1,0 +1,16 @@
+<%= image_tag 'WebDevelopment.png', class:"ol-onboard-image" %>
+<div id="inner-content">
+  <h1 class="ol-onboarding-h1">Haben Sie bereits eine Webseite?</h1>
+  <div class="row ol-row">
+    <div class="col-xs-6">
+      <%= form_for(@company, url: onboarding_stepa10_path, remote: true) do |f| %>
+      <%= f.submit "Ja", class: "btn ol-default" %>
+      <% end %>
+    </div>
+    <div class="col-xs-6">
+      <%= form_for(@company, url: onboarding_step9a_path, remote: true) do |f| %>
+      <%= f.submit "Nein", class: "btn ol-default" %>
+      <% end %>
+    </div>
+  </div>
+</div>

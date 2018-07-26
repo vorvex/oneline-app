@@ -1,0 +1,18 @@
+<h1> Haben Sie einen Google Akkount für Ihre Website Daten?
+</h1>
+<div class="row">
+  <div class="col-md-6">
+    <a class="btn btn-default" href="/auth/google_oauth2">Ja</a>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-default" id='nein' data-url="<%= no_google_path %>" type="button">Nein</button>
+  </div>
+</div>
+<script>
+$('#nein').on('click', function(){
+    $.ajax({
+      type: "GET",
+      url: $(this).data("url"),
+    });
+});
+</script>

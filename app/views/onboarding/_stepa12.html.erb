@@ -1,0 +1,9 @@
+<%= image_tag 'Advertisement.png', class:"ol-onboard-image" %>
+<div id="inner-content">
+  <h1 class="ol-onboarding-h1">Bitte melden Sie sich nun bei Ihrem Google Akkount an.</h1>
+  <div class="row ol-row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", class: "btn ol-google" %>
+    </div>
+  </div>
+</div>

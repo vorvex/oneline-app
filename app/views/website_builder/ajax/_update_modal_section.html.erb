@@ -1,0 +1,80 @@
+<!-- Modal -->
+<div class="modal fade" id="editSection" tabindex="-1" role="dialog" aria-labelledby="editSectionLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for(@section, :html => {class: "form-group", role: "form"}, url: update_section_path(@section.id)) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="editSectionLabel">Neuer Abschnitt</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.label :header %>
+            <%= f.text_field :header, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :subheader %>
+            <%= f.text_field :subheader, autofocus: true, class: 'form-control' %>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 s-selector">
+              <input id="1" type="radio" name="section[category]" value="1" />
+              <label class="drinkcard-cc one" for="1"></label>
+            </div>
+            <div class="col-xs-6 s-selector">
+              <input id="2" type="radio" name="section[category]" value="2" />
+              <label class="drinkcard-cc two" for="2"></label>
+            </div>
+            
+            <div class="col-xs-6 s-selector">
+              <input id="2_3-9" type="radio" name="section[category]" value="2_3-9" />
+              <label class="drinkcard-cc three" for="2_3-9"></label>
+            </div>
+            <div class="col-xs-6 s-selector">
+              <input id="2_9-3" type="radio" name="section[category]" value="2_9-3" />
+              <label class="drinkcard-cc four" for="2_9-3"></label>
+            </div>
+            
+            <div class="col-xs-6 s-selector">
+              <input id="3" type="radio" name="section[category]" value="3" />
+              <label class="drinkcard-cc five" for="3"></label>
+            </div>
+            <div class="col-xs-6 s-selector">
+              <input id="4" type="radio" name="section[category]" value="4" />
+              <label class="drinkcard-cc six" for="4"></label>
+            </div>
+            
+            <div class="col-xs-6 s-selector">
+              <input id="2_img-left" type="radio" name="section[category]" value="2_img-left" />
+              <label class="drinkcard-cc seven" for="2_img-left"></label>
+            </div>
+            <div class="col-xs-6 s-selector">
+              <input id="2_img-right" type="radio" name="section[category]" value="2_img-right" />
+              <label class="drinkcard-cc eight" for="2_img-right"></label>
+            </div>
+            
+            <div class="col-xs-6 s-selector">
+              <input id="2_3-9_img" type="radio" name="section[category]" value="2_3-9_img" />
+              <label class="drinkcard-cc nine" for="2_3-9_img"></label>
+            </div>
+            <div class="col-xs-6 s-selector">
+              <input id="2_9-3_img" type="radio" name="section[category]" value="2_9-3_img" />
+              <label class="drinkcard-cc ten" for="2_9-3_img"></label>
+            </div>
+            <script>
+              $a = $('.s-selector').children('input')
+              $b = "#{@section.category}"
+              if ($a.value() === $b) {
+                $a.checked('checked')
+              }
+            </script>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+          <%= f.submit "Abschnitt aktualisieren", class: 'btn btn-primary'%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

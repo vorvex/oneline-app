@@ -1,0 +1,17 @@
+<%= image_tag 'E-Commerce.png', class:"ol-onboard-image" %>
+<div id="inner-content">
+  <h1 class="ol-onboarding-h1">Bedienen Sie Kunden in ihrem Laden, nur Ausserhalb oder beides?</h1>
+  <div class="row ol-row">
+    <%= form_for(@company, url: onboarding_step6_path, remote: true) do |f| %>
+    <div class="col-xs-4">
+      <%= f.submit "Vorort", class: "btn ol-default" %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.submit "Außerhalb", class: "btn ol-default" %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.submit "Beides", class: "btn ol-default" %>
+    </div>   
+    <% end %>
+  </div>
+</div>
