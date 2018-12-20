@@ -1,4 +1,4 @@
-{ jsonld: '{
+{
           "@context": "http://schema.org",
           "@type": "Organization",
           "url": "http://www.example.com",
@@ -8,4 +8,5 @@
             "telephone": "+1-401-555-1212",
             "contactType": "Customer service"
           }
-        }'}
+}
+
