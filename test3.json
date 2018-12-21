@@ -1,4 +1,5 @@
-{"event":{
+{
+  "event": {
   "@context": "http://schema.org",
   "@type": "Event",
   "name": "Jan Lieberman Concert Series: Journey in Jazz",
@@ -34,4 +35,5 @@
     "@type": "PerformingGroup",
     "name": "Andy Lagunoff"
   },
-  "url": "test.html"}
+  "url": "test.html"
+  }
